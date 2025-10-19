@@ -1,0 +1,207 @@
+/* styles/globals.css — FINAL 2025 */
+
+/* === FONT === */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === RESET & BASE === */
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* === THEME LIGHT === */
+:root {
+  /* Layout */
+  --sticky-offset: 76px;
+  --header-height: 64px;
+
+  /* Warna dasar (light) */
+  --bg-app: #f1f5f9;
+  --bg-table: #ffffff;
+  --bg-header: #f8fafc; /* samain visual */
+  --bg-hover: #f1f5f9;
+  --bg-input: #ffffff;
+
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+
+  --border-color: #e2e8f0;
+  --shadow-pop: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* === THEME DARK === */
+.dark {
+  --bg-app: #0b1220;
+  --bg-table: #0f172a;
+  --bg-header: #0f172a;  /* match table agar sejajar */
+  --bg-hover: #1a2438;
+  --bg-input: #141e30;
+
+  --text-primary: #e5eefc;
+  --text-secondary: #94a3b8;
+
+  --border-color: #1e293b;
+  --shadow-pop: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+/* === RESPONSIVE VARS === */
+@media (max-width: 1024px) {
+  :root { --sticky-offset: 68px; }
+}
+@media (max-width: 640px) {
+  :root { --sticky-offset: 58px; }
+}
+
+/* === TABLE BASE === */
+table {
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  width: 100%;
+}
+
+/* Sticky header tabel */
+table thead.sticky {
+  position: sticky;
+  top: var(--sticky-offset);
+  z-index: 20;
+}
+
+/* Header tabel */
+table th {
+  background-color: var(--bg-header);
+  padding: 0.75rem 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: left;
+  box-shadow: none !important;
+}
+
+/* Isi tabel */
+table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-table);
+  color: var(--text-primary);
+}
+
+/* === FIX TABLE GRID ALIGNMENT === */
+.table-fixed {
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+}
+
+/* === PATCH: Hover & border untuk semua tabel === */
+
+/* Hover hanya untuk tabel umum (tidak untuk .no-hover) */
+table:not(.no-hover) tr:hover td {
+  background-color: var(--bg-hover);
+}
+
+/* Pulihkan border kolom terakhir */
+table td:last-child {
+  background-color: var(--bg-table);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* === PATCH: Isolasi khusus untuk UpdateTable === */
+.update-table td,
+.update-table th {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Hover di UpdateTable tetap aktif */
+.update-table tr:hover td {
+  background-color: var(--bg-hover);
+}
+
+/* === BADGE STATUS (biar warna dari Tailwind jalan) === */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;  /* px-2 py-0.5 */
+  border-radius: 0.25rem;    /* rounded */
+  font-size: 0.75rem;        /* text-xs */
+  font-weight: 600;          /* font-semibold */
+  line-height: 1rem;
+}
+/* (Tidak ada override background-color di sini supaya class Tailwind dari getStatusBadge() tampil) */
+
+/* === SCROLLBAR STYLE === */
+::-webkit-scrollbar { height: 10px; width: 10px; }
+::-webkit-scrollbar-thumb { background-color: #475569; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background-color: #64748b; }
+::-webkit-scrollbar-track { background-color: transparent; }
+
+/* === ANIMATION UTILS === */
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to   { transform: translateX(0);      opacity: 1; }
+}
+.animate-slideInLeft { animation: slideInLeft 0.25s ease-out forwards; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.suggest-popover {
+  animation: fadeIn 0.15s ease-in-out;
+  box-shadow: var(--shadow-pop);
+  z-index: 9999;
+}
+
+/* === TRANSITION UTILS === */
+.transition-fast { transition: all 0.15s ease-in-out; }
+.transition-medium { transition: all 0.3s ease-in-out; }
+
+/* === FORM FOCUS === */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+/* === Z-INDEX LAYERS === */
+.z-layer-header { z-index: 30; }
+.z-layer-dropdown { z-index: 50; }
+.z-layer-modal { z-index: 100; }
+
+/* === FILTERBAR STICKY === */
+.filterbar-sticky {
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-app);
+  z-index: 40;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.filterbar-sticky.scrolled { box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); }
+
+/* === MOBILE OPTIMIZATION === */
+@media (max-width: 768px) {
+  table td,
+  table th {
+    padding: 0.5rem 0.5rem;
+    font-size: 12px;
+  }
+  .filterbar-sticky { top: 0; }
+}
+
+/* === UTILS TAMBAHAN === */
+.shadow-pop { box-shadow: var(--shadow-pop); }
