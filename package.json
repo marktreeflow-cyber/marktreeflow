@@ -1,36 +1,57 @@
 {
   "name": "mplan-dashboard-mvp",
   "version": "1.0.0",
-  "description": "MPLAN dashboard MVP web app",
+  "description": "🚀 MPLAN Dashboard MVP — Built with Next.js, Tailwind CSS, and Supabase. A modular analytics and management dashboard for company updates, forecasts, and AI insights.",
+  "author": "marktreeflow-cyber",
+  "license": "MIT",
+  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "analyze": "cross-env ANALYZE=true next build"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.8",
     "@heroicons/react": "^2.2.0",
-    "@supabase/supabase-js": "latest",
-    "autoprefixer": "^10.4.0",
-    "chart.js": "^4.4.0",
+    "@supabase/supabase-js": "^2.45.3",
+    "autoprefixer": "^10.4.19",
+    "chart.js": "^4.4.6",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.3",
     "lucide-react": "^0.544.0",
-    "next": "latest",
+    "next": "15.0.3",
     "next-themes": "^0.4.6",
     "papaparse": "^5.5.3",
-    "postcss": "^8.4.0",
+    "postcss": "^8.4.47",
     "quill": "^2.0.3",
-    "react": "latest",
+    "react": "18.3.1",
     "react-chartjs-2": "^5.2.0",
-    "react-dom": "latest",
+    "react-dom": "18.3.1",
     "react-icons": "^5.5.0",
-    "react-quill": "^0.0.2",
+    "react-quill": "2.0.0",
+    "react-toastify": "^11.0.5",
     "react-window": "^2.2.1",
-    "recharts": "^3.2.1",
-    "tailwindcss": "^3.3.0",
+    "recharts": "^2.10.3",
+    "tailwindcss": "^3.4.13",
     "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "eslint": "^9.38.0",
+    "eslint-config-next": "^15.0.3",
+    "glob": "^11.0.3",
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1"
+  },
+  "overrides": {
+    "react-quill": "2.0.0"
+  },
+  "engines": {
+    "node": ">=18.17.0"
   }
 }
